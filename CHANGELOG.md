@@ -2,172 +2,115 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [2.6.0] - 2025-03-15
-
-### 🔒 Security
-
-- **CRITICAL**: Removed all `eval()` usage from genome.js (CVE-2026-XXXXX)
-- Added `safeGenomeParse()` with JSON-only parsing - no code execution
-- Added comprehensive input validation with Zod schemas
-- Added path traversal protection (`..` blocking)
-- Added injection attack detection (eval, require, process.env, etc.)
-- Added prototype pollution detection
-- Added shell metacharacter filtering
-- Added security test suite with 50+ attack pattern tests
-- CVSS 9.8 vulnerability FIXED
-- All OWASP Top 10 addressed
-
-### ✨ Added
-
-- `lib/genome-safe.js` - Secure genome parsing module
-- `lib/cli-validator.js` - Input validation and sanitization
-- `validatePath()` - Secure path validation
-- `validateCommand()` - Command options validation
-- `sanitizeString()` - String sanitization with HTML escaping
-- `validateGenomeString()` - Pre-parse genome validation
-- `getAllowedOperations()` - Query allowed operations
-- `isOperationAllowed()` - Check operation whitelist
-- Security test suite (`tests/security/genome-security.test.mjs`)
-- CLI validation tests (`tests/cli-validation.test.mjs`)
-- Integration tests (`tests/integration/full-workflow.test.mjs`)
-- `palace validate` command for genome security checking
-
-### 📝 Changed
-
-- Updated `bin/cli.js` with full validation integration
-- Enhanced error handling with detailed error messages
-- Improved security error reporting with pattern detection
-- Updated documentation with security notes
-- Version bumped from 2.5.0 to 2.6.0
-
-### 🐛 Fixed
-
-- Fixed path traversal vulnerabilities in CLI
-- Fixed potential injection attacks in genome parsing
-- Fixed unsafe code execution via eval()
-- Fixed missing input validation in pack/merge operations
-
-### 📚 Documentation
-
-- Added security documentation in README
-- Added SECURITY.md with vulnerability reporting info
-- Added inline JSDoc for all validation functions
-- Added security best practices guide
-
-### 🧪 Tests
-
-- Added 50+ security tests for injection prevention
-- Added 40+ CLI validation tests
-- Added 30+ integration tests
-- Total test coverage increased to 85%+
+Format: `[vMAJOR.MINOR.PATCH] - YYYY-MM-DD`
 
 ---
 
-## [2.5.0] - 2025-03-01
+## [v1.0.5] - 2025-03-16
 
-### ✨ Added
+### Added
+- Complete CLI documentation in README (15 commands)
+- Wiki documentation folder with 8 API guides
+- npm badges and quick links in README
 
-- Pattern library with template expansion
-- Behavior graphs for flow detection
-- Semantic hashing for deduplication
-- One-line genome generation
-- Full reconstruction support
-- Interactive LLM query mode
-- Pack and merge functionality
-
-### 📝 Changed
-
-- Improved compression ratios (500-2000x)
-- Enhanced pattern detection algorithms
-- Better flow tracing accuracy
+### Changed
+- Removed .gitignore from repo (local only)
+- Clean repo history (no junk files)
 
 ---
 
-## [2.4.0] - 2025-02-15
+## [v1.0.4] - 2025-03-16
 
-### ✨ Added
+### Added
+- Semantic version badges in README
+- `/stop-slop` principles applied to documentation
+- Non-developer explanation section
 
-- Multi-language support (Python, Go, Rust, Java)
-- Enhanced AST analysis
-- Dependency cycle detection
-- Complexity metrics
-
-### 🐛 Fixed
-
-- Memory usage optimization
-- Large file handling improvements
-- Pattern matching edge cases
+### Changed
+- README rewritten for accessibility
+- Philosophical storytelling approach
+- Detailed API docs moved to wiki/
 
 ---
 
-## [2.3.0] - 2025-02-01
+## [v1.0.3] - 2025-03-16
 
-### ✨ Added
+### Added
+- GitHub repository setup
+- MIT License
+- Initial npm publish
 
-- CXML export format
-- Genome encoder/decoder
-- Compression levels (1-4)
-- Glyph compression option
-
-### 📝 Changed
-
-- Refactored core architecture
-- Improved error messages
-- Better CLI output formatting
-
----
-
-## [2.2.0] - 2025-01-15
-
-### ✨ Added
-
-- Palace initialization system
-- Project status command
-- Dependency analysis
-- Complexity analysis
-
-### 🐛 Fixed
-
-- File scanning performance
-- Pattern extraction accuracy
+### Security
+- No `eval()` - completely removed
+- Full input validation
+- Path traversal protection
+- Injection attack prevention
+- Safe genome parsing (JSON only)
 
 ---
 
-## [2.1.0] - 2025-01-01
+## [v1.0.0] - 2025-03-14
 
-### ✨ Added
+### Added
+- **Core Modules**
+  - `Palace` - Main orchestrator class
+  - `PatternLibrary` - Code template management
+  - `BehaviorGraph` - Flow and sequence mapping
+  - `SemanticHash` - Code fingerprinting
+  - `GenomeEncoder/Decoder` - Compression engine
+  - `Reconstructor` - Code generation from genome
+  - `CLIValidator` - Input sanitization
+  - `GenomeSafe` - Security layer
 
-- Basic pattern detection
-- Flow tracing
-- File scanning
-- JSON export
+- **CLI Commands**
+  - `init` - Initialize palace directory
+  - `scan` - Analyze codebase
+  - `genome` - Generate genome string
+  - `export` - Export to CXML/JSON
+  - `rebuild` - Reconstruct from genome
+  - `pack` - Create portable package
+  - `merge` - Merge package into project
+  - `compress` - Pattern compression
+  - `patterns` - Manage pattern library
+  - `flows` - Manage behavior graphs
+  - `deps` - Dependency analysis
+  - `complexity` - Complexity metrics
+  - `status` - Show current state
+  - `query` - Interactive LLM query
+  - `validate` - Security validation
 
-### 📝 Changed
-
-- Initial release
-- Core architecture established
+- **Configuration**
+  - `config/exclude.json` - File exclusion patterns
+  - `config/patterns.json` - Built-in patterns
+  - `config/settings.json` - Default settings
 
 ---
 
-## [2.0.0] - 2024-12-15
+## Versioning Scheme
 
-### ✨ Added
+```
+vMAJOR.MINOR.PATCH
 
-- Complete rewrite with ESM modules
-- TypeScript definitions
-- Modern CLI with Commander
-- Enhanced configuration
+MAJOR - Breaking changes
+MINOR - New features, backward compatible
+PATCH - Bug fixes, documentation
+```
 
 ---
 
-## [1.0.0] - 2024-11-01
+## Upcoming
 
-### ✨ Added
+### [v1.1.0] - Planned
 
-- Initial release
-- Basic genome generation
-- Simple pattern matching
-- CLI interface
+- [ ] Watch mode (`palace watch`)
+- [ ] Config file support (`.palacerc`)
+- [ ] Plugin system
+- [ ] Custom pattern registration
+- [ ] Flow templates
+
+### [v2.0.0] - Future
+
+- [ ] Multi-project genomes
+- [ ] LLM provider integrations
+- [ ] Real-time sync
+- [ ] Web UI
