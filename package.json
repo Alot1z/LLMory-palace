@@ -1,8 +1,8 @@
 {
   "name": "llmemory-palace",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "type": "module",
-  "description": "LLMemory-Palace: Code genome system for LLM context transfer. Maps codebases into portable format for LLM understanding.",
+  "description": "LLMemory-Palace: Code genome system for LLM context transfer. Maps codebases into portable format for LLM understanding. Now with parallel chain refresh support.",
   "main": "lib/palace.js",
   "bin": {
     "palace": "./bin/cli.js"
@@ -19,7 +19,11 @@
     "./patterns": "./lib/patterns.js",
     "./flows": "./lib/flows.js",
     "./semantic-hash": "./lib/semantic-hash.js",
-    "./reconstructor": "./lib/reconstructor.js"
+    "./reconstructor": "./lib/reconstructor.js",
+    "./refresh": "./lib/refresh.js",
+    "./refresh-analyzer": "./lib/refresh-analyzer.js",
+    "./state-reducer": "./lib/state-reducer.js",
+    "./scanner-parallel": "./lib/scanner-parallel.js"
   },
   "scripts": {
     "start": "node bin/cli.js",
