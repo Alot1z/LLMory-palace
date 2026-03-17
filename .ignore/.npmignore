@@ -1,0 +1,44 @@
+# Files excluded from npm package
+
+# Development directories
+inspiration/
+.bg-shell/
+.pi/
+_bmad/
+_bmad-output/
+.claude/
+.palace/
+design-artifacts/
+llm-export/
+reconstructed/
+skills/
+src/
+test/
+web/
+wiki/
+docs/
+misc/
+tests/
+
+# Phase tracking
+PHASE*.md
+IMPLEMENTATION-STATUS.md
+
+# Config files
+build.config.js
+jest.config.js
+test.genome
+
+# Development files
+.git/
+.gitignore
+.node_modules/
+*.log
+.env
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
