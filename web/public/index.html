@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LLMemory-Palace v3.0</title>
+  <title>Palace</title>
   <style>
     * {
       margin: 0;
@@ -12,30 +12,109 @@
     }
 
     :root {
-      --bg-primary: #0d1117;
-      --bg-secondary: #161b22;
-      --bg-tertiary: #21262d;
-      --text-primary: #c9d1d9;
-      --text-secondary: #8b949e;
-      --accent-cyan: #58a6ff;
-      --accent-green: #3fb950;
-      --accent-purple: #a371f7;
-      --accent-orange: #d29922;
-      --border-color: #30363d;
+      --bg-primary: #0a0e14;
+      --bg-secondary: #12171f;
+      --bg-tertiary: #1a2130;
+      --text-primary: #c5cdd9;
+      --text-secondary: #6b7d93;
+      --accent-primary: #3d8bfd;
+      --accent-success: #2dd4bf;
+      --accent-warning: #f59e0b;
+      --border-color: #252d3a;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       min-height: 100vh;
+    }
+
+    /* Custom Icons (SVG) */
+    .icon {
+      display: inline-block;
+      width: 1.25em;
+      height: 1.25em;
+      vertical-align: middle;
+    }
+
+    .icon-palace {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-success));
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01M9 14h.01M15 14h.01'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01M9 14h.01M15 14h.01'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-dashboard {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Crect x='3' y='3' width='7' height='9' rx='1'/%3E%3Crect x='14' y='3' width='7' height='5' rx='1'/%3E%3Crect x='14' y='12' width='7' height='9' rx='1'/%3E%3Crect x='3' y='16' width='7' height='5' rx='1'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Crect x='3' y='3' width='7' height='9' rx='1'/%3E%3Crect x='14' y='3' width='7' height='5' rx='1'/%3E%3Crect x='14' y='12' width='7' height='9' rx='1'/%3E%3Crect x='3' y='16' width='7' height='5' rx='1'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-files {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-patterns {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-flows {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M22 12h-4l-3 9L9 3l-3 9H2'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M22 12h-4l-3 9L9 3l-3 9H2'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-deps {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-complexity {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M3 3v18h18'/%3E%3Cpath d='M18 17V9'/%3E%3Cpath d='M13 17V5'/%3E%3Cpath d='M8 17v-3'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M3 3v18h18'/%3E%3Cpath d='M18 17V9'/%3E%3Cpath d='M13 17V5'/%3E%3Cpath d='M8 17v-3'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-genome {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-export {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-query {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-refresh {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M23 4v6h-6M1 20v-6h6'/%3E%3Cpath d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M23 4v6h-6M1 20v-6h6'/%3E%3Cpath d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .icon-copy {
+      background: currentColor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E") center/contain no-repeat;
     }
 
     /* Header */
     .header {
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
-      padding: 1rem 2rem;
+      padding: 0.875rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -44,49 +123,43 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.625rem;
     }
 
     .logo-icon {
-      font-size: 1.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
     }
 
     .logo-text {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-weight: 600;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
     }
 
     .status-badge {
       background: var(--bg-tertiary);
-      padding: 0.5rem 1rem;
+      padding: 0.375rem 0.875rem;
       border-radius: 9999px;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--accent-green);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      background: var(--accent-success);
     }
 
     /* Main Layout */
     .main {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      min-height: calc(100vh - 65px);
+      grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 53px);
     }
 
     /* Sidebar */
@@ -97,26 +170,27 @@
     }
 
     .nav-section {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .nav-title {
-      font-size: 0.75rem;
+      font-size: 0.6875rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       color: var(--text-secondary);
-      padding: 0.5rem 1.5rem;
+      padding: 0.5rem 1.25rem;
       margin-bottom: 0.25rem;
     }
 
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1.5rem;
+      gap: 0.625rem;
+      padding: 0.625rem 1.25rem;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.15s;
       color: var(--text-secondary);
+      font-size: 0.875rem;
     }
 
     .nav-item:hover {
@@ -126,17 +200,13 @@
 
     .nav-item.active {
       background: var(--bg-tertiary);
-      color: var(--accent-cyan);
-      border-left: 2px solid var(--accent-cyan);
-    }
-
-    .nav-icon {
-      font-size: 1.125rem;
+      color: var(--accent-primary);
+      border-left: 2px solid var(--accent-primary);
     }
 
     /* Content */
     .content {
-      padding: 2rem;
+      padding: 1.5rem;
       overflow-y: auto;
     }
 
@@ -149,68 +219,100 @@
     }
 
     .page-header {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .page-title {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
     }
 
     .page-description {
       color: var(--text-secondary);
+      font-size: 0.875rem;
     }
 
     /* Cards */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .card {
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border-radius: 8px;
+      padding: 1.25rem;
     }
 
     .card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .card-title {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .card-icon {
-      font-size: 1.25rem;
-    }
-
     .card-value {
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
     }
 
-    .card-change {
-      font-size: 0.875rem;
-      color: var(--accent-green);
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #5a9bfd;
+    }
+
+    .btn-secondary {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-primary);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
     }
 
     /* Tables */
     .table-container {
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
     }
 
@@ -221,14 +323,15 @@
 
     .table th,
     .table td {
-      padding: 0.875rem 1rem;
+      padding: 0.75rem 1rem;
       text-align: left;
       border-bottom: 1px solid var(--border-color);
+      font-size: 0.8125rem;
     }
 
     .table th {
       background: var(--bg-tertiary);
-      font-size: 0.75rem;
+      font-size: 0.6875rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--text-secondary);
@@ -242,179 +345,86 @@
       background: var(--bg-tertiary);
     }
 
-    /* Buttons */
-    .btn {
+    /* Tags */
+    .tag {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.625rem 1.25rem;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--accent-cyan);
-      color: var(--bg-primary);
-    }
-
-    .btn-primary:hover {
-      background: #79c0ff;
-    }
-
-    .btn-secondary {
+      padding: 0.1875rem 0.5rem;
       background: var(--bg-tertiary);
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 0.6875rem;
+      font-weight: 500;
     }
 
-    .btn-secondary:hover {
-      background: var(--bg-secondary);
-      border-color: var(--accent-cyan);
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
+    .tag-primary { color: var(--accent-primary); }
+    .tag-success { color: var(--accent-success); }
+    .tag-warning { color: var(--accent-warning); }
 
     /* Code Block */
     .code-block {
       background: var(--bg-primary);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 1rem;
-      font-family: 'SF Mono', Monaco, 'Andale Mono', monospace;
-      font-size: 0.875rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8125rem;
       overflow-x: auto;
       white-space: pre-wrap;
       word-break: break-all;
       max-height: 400px;
       overflow-y: auto;
+      color: var(--text-secondary);
     }
 
     /* Input */
     .input-group {
-      margin-bottom: 1rem;
+      margin-bottom: 0.875rem;
     }
 
     .input-label {
       display: block;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       color: var(--text-secondary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.375rem;
     }
 
     .input {
       width: 100%;
-      padding: 0.75rem 1rem;
+      padding: 0.625rem 0.875rem;
       background: var(--bg-primary);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 6px;
       color: var(--text-primary);
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
     }
 
     .input:focus {
       outline: none;
-      border-color: var(--accent-cyan);
-    }
-
-    textarea.input {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    /* Tags */
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.25rem 0.75rem;
-      background: var(--bg-tertiary);
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      margin-right: 0.5rem;
-    }
-
-    .tag-cyan { color: var(--accent-cyan); }
-    .tag-green { color: var(--accent-green); }
-    .tag-purple { color: var(--accent-purple); }
-    .tag-orange { color: var(--accent-orange); }
-
-    /* Progress */
-    .progress-bar {
-      height: 4px;
-      background: var(--bg-tertiary);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: var(--accent-cyan);
-      transition: width 0.3s;
-    }
-
-    /* Loading */
-    .loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem;
-      color: var(--text-secondary);
-    }
-
-    .spinner {
-      width: 24px;
-      height: 24px;
-      border: 2px solid var(--border-color);
-      border-top-color: var(--accent-cyan);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin-right: 0.75rem;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      border-color: var(--accent-primary);
     }
 
     /* Toast */
     .toast-container {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
+      bottom: 1.5rem;
+      right: 1.5rem;
       z-index: 1000;
     }
 
     .toast {
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      padding: 0.75rem 1.25rem;
       margin-top: 0.5rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      animation: slideIn 0.3s;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
     }
 
-    .toast.success { border-left: 3px solid var(--accent-green); }
-    .toast.error { border-left: 3px solid #f85149; }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
+    .toast.success { border-left: 2px solid var(--accent-success); }
+    .toast.error { border-left: 2px solid #ef4444; }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -436,8 +446,8 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <span class="logo-icon">🧠</span>
-      <span class="logo-text">LLMemory-Palace</span>
+      <span class="icon icon-palace logo-icon"></span>
+      <span class="logo-text">Palace</span>
     </div>
     <div class="status-badge">
       <span class="status-dot"></span>
@@ -452,11 +462,11 @@
       <div class="nav-section">
         <div class="nav-title">Overview</div>
         <div class="nav-item active" data-page="dashboard">
-          <span class="nav-icon">📊</span>
+          <span class="icon icon-dashboard"></span>
           <span>Dashboard</span>
         </div>
         <div class="nav-item" data-page="files">
-          <span class="nav-icon">📁</span>
+          <span class="icon icon-files"></span>
           <span>Files</span>
         </div>
       </div>
@@ -464,19 +474,19 @@
       <div class="nav-section">
         <div class="nav-title">Analysis</div>
         <div class="nav-item" data-page="patterns">
-          <span class="nav-icon">🧩</span>
+          <span class="icon icon-patterns"></span>
           <span>Patterns</span>
         </div>
         <div class="nav-item" data-page="flows">
-          <span class="nav-icon">⚡</span>
+          <span class="icon icon-flows"></span>
           <span>Flows</span>
         </div>
         <div class="nav-item" data-page="dependencies">
-          <span class="nav-icon">🔗</span>
+          <span class="icon icon-deps"></span>
           <span>Dependencies</span>
         </div>
         <div class="nav-item" data-page="complexity">
-          <span class="nav-icon">📈</span>
+          <span class="icon icon-complexity"></span>
           <span>Complexity</span>
         </div>
       </div>
@@ -484,15 +494,15 @@
       <div class="nav-section">
         <div class="nav-title">Actions</div>
         <div class="nav-item" data-page="genome">
-          <span class="nav-icon">🧬</span>
+          <span class="icon icon-genome"></span>
           <span>Genome</span>
         </div>
         <div class="nav-item" data-page="export">
-          <span class="nav-icon">📤</span>
+          <span class="icon icon-export"></span>
           <span>Export</span>
         </div>
         <div class="nav-item" data-page="query">
-          <span class="nav-icon">🔍</span>
+          <span class="icon icon-query"></span>
           <span>Query</span>
         </div>
       </div>
@@ -511,7 +521,7 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title">Total Files</span>
-              <span class="card-icon">📁</span>
+              <span class="icon icon-files"></span>
             </div>
             <div class="card-value" id="stat-files">-</div>
           </div>
@@ -519,7 +529,7 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title">Lines of Code</span>
-              <span class="card-icon">📝</span>
+              <span class="icon icon-query"></span>
             </div>
             <div class="card-value" id="stat-lines">-</div>
           </div>
@@ -527,7 +537,7 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title">Patterns</span>
-              <span class="card-icon">🧩</span>
+              <span class="icon icon-patterns"></span>
             </div>
             <div class="card-value" id="stat-patterns">-</div>
           </div>
@@ -535,7 +545,7 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title">Flows</span>
-              <span class="card-icon">⚡</span>
+              <span class="icon icon-flows"></span>
             </div>
             <div class="card-value" id="stat-flows">-</div>
           </div>
@@ -543,14 +553,16 @@
 
         <div class="btn-group">
           <button class="btn btn-primary" onclick="refreshData()">
-            <span>🔄</span> Refresh
+            <span class="icon icon-refresh"></span>
+            Refresh
           </button>
           <button class="btn btn-secondary" onclick="rescanProject()">
-            <span>🔍</span> Rescan
+            <span class="icon icon-query"></span>
+            Rescan
           </button>
         </div>
 
-        <h3 style="margin-bottom: 1rem;">Languages</h3>
+        <h3 style="margin-bottom: 0.75rem; font-size: 0.875rem;">Languages</h3>
         <div id="languages-list" class="card-grid"></div>
       </div>
 
@@ -651,7 +663,7 @@
           </div>
         </div>
         
-        <h3 style="margin: 1.5rem 0 1rem;">High Complexity Files</h3>
+        <h3 style="margin: 1.25rem 0 0.75rem; font-size: 0.875rem;">High Complexity Files</h3>
         <div class="table-container">
           <table class="table">
             <thead>
@@ -674,10 +686,12 @@
         
         <div class="btn-group">
           <button class="btn btn-primary" onclick="generateGenome()">
-            <span>🧬</span> Generate Genome
+            <span class="icon icon-genome"></span>
+            Generate Genome
           </button>
           <button class="btn btn-secondary" onclick="copyGenome()">
-            <span>📋</span> Copy
+            <span class="icon icon-copy"></span>
+            Copy
           </button>
         </div>
         
@@ -712,7 +726,8 @@
           </div>
           
           <button class="btn btn-primary" onclick="exportProject()">
-            <span>📤</span> Export
+            <span class="icon icon-export"></span>
+            Export
           </button>
         </div>
         
@@ -733,7 +748,8 @@
           </div>
           
           <button class="btn btn-primary" onclick="executeQuery()">
-            <span>🔍</span> Execute
+            <span class="icon icon-query"></span>
+            Execute
           </button>
         </div>
         
@@ -746,42 +762,26 @@
   <div class="toast-container" id="toast-container"></div>
 
   <script>
-    // API base URL
     const API_BASE = '/api';
+    let state = { status: null, files: [], patterns: [], flows: [], genome: null };
 
-    // State
-    let state = {
-      status: null,
-      files: [],
-      patterns: [],
-      flows: [],
-      genome: null
-    };
-
-    // Show toast notification
     function showToast(message, type = 'success') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `<span>${type === 'success' ? '✓' : '✗'}</span> ${message}`;
+      toast.className = 'toast ' + type;
+      toast.textContent = message;
       container.appendChild(toast);
-      
-      setTimeout(() => {
-        toast.remove();
-      }, 3000);
+      setTimeout(() => toast.remove(), 3000);
     }
 
-    // API helper
     async function api(endpoint, options = {}) {
       try {
-        const res = await fetch(`${API_BASE}${endpoint}`, {
+        const res = await fetch(API_BASE + endpoint, {
           headers: { 'Content-Type': 'application/json' },
           ...options
         });
         const data = await res.json();
-        if (!data.success) {
-          throw new Error(data.error || 'API error');
-        }
+        if (!data.success) throw new Error(data.error || 'API error');
         return data.data;
       } catch (error) {
         showToast(error.message, 'error');
@@ -789,18 +789,15 @@
       }
     }
 
-    // Navigation
     document.querySelectorAll('.nav-item').forEach(item => {
       item.addEventListener('click', () => {
         document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        
         item.classList.add('active');
-        document.getElementById(`page-${item.dataset.page}`).classList.add('active');
+        document.getElementById('page-' + item.dataset.page).classList.add('active');
       });
     });
 
-    // Format helpers
     function formatSize(bytes) {
       if (bytes < 1024) return bytes + ' B';
       if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
@@ -811,7 +808,6 @@
       return num?.toLocaleString() || '-';
     }
 
-    // Load status
     async function loadStatus() {
       try {
         state.status = await api('/status');
@@ -821,171 +817,105 @@
       }
     }
 
-    // Update dashboard
     function updateDashboard() {
       const s = state.status;
       if (!s) return;
-
       document.getElementById('stat-files').textContent = formatNumber(s.files);
       document.getElementById('stat-lines').textContent = formatNumber(s.lines);
       document.getElementById('stat-patterns').textContent = formatNumber(s.patterns);
       document.getElementById('stat-flows').textContent = formatNumber(s.flows);
     }
 
-    // Load files
+    async function refreshData() {
+      await Promise.all([loadStatus(), loadFiles(), loadPatterns(), loadFlows()]);
+      showToast('Data refreshed');
+    }
+
+    async function rescanProject() {
+      try {
+        await api('/scan', { method: 'POST' });
+        await refreshData();
+        showToast('Rescan complete');
+      } catch (error) {}
+    }
+
     async function loadFiles() {
       try {
         state.files = await api('/files');
         updateFilesTable();
-      } catch (error) {
-        console.error('Failed to load files:', error);
-      }
+      } catch (error) {}
     }
 
-    // Update files table
     function updateFilesTable() {
       const tbody = document.getElementById('files-table');
-      tbody.innerHTML = state.files.map(f => `
-        <tr>
-          <td><code>${f.path}</code></td>
-          <td><span class="tag tag-cyan">${f.language}</span></td>
-          <td>${formatNumber(f.lines)}</td>
-          <td>${formatSize(f.size)}</td>
-          <td>${f.patterns}</td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = state.files.map(f => 
+        '<tr><td><code>' + f.path + '</code></td><td><span class="tag tag-primary">' + f.language + '</span></td><td>' + formatNumber(f.lines) + '</td><td>' + formatSize(f.size) + '</td><td>' + (f.patterns || 0) + '</td></tr>'
+      ).join('');
     }
 
-    // Load patterns
     async function loadPatterns() {
       try {
         const data = await api('/patterns');
         state.patterns = Object.entries(data.data || data);
         updatePatternsList();
-      } catch (error) {
-        console.error('Failed to load patterns:', error);
-      }
+      } catch (error) {}
     }
 
-    // Update patterns list
     function updatePatternsList() {
       const container = document.getElementById('patterns-list');
-      container.innerHTML = state.patterns.map(([name, p]) => `
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">${name}</span>
-            <span class="tag tag-purple">${p.instances || 0} instances</span>
-          </div>
-          <code style="font-size: 0.75rem; color: var(--text-secondary);">
-            ${(p.template || '').substring(0, 80)}...
-          </code>
-        </div>
-      `).join('');
+      container.innerHTML = state.patterns.map(([name, p]) => 
+        '<div class="card"><div class="card-header"><span class="card-title">' + name + '</span><span class="tag tag-success">' + (p.instances || 0) + ' instances</span></div></div>'
+      ).join('');
     }
 
-    // Load flows
     async function loadFlows() {
       try {
         const data = await api('/flows');
         state.flows = Object.entries(data.data || data);
         updateFlowsList();
-      } catch (error) {
-        console.error('Failed to load flows:', error);
-      }
+      } catch (error) {}
     }
 
-    // Update flows list
     function updateFlowsList() {
       const container = document.getElementById('flows-list');
-      container.innerHTML = state.flows.map(([name, f]) => `
-        <div class="card" style="margin-bottom: 1rem;">
-          <div class="card-header">
-            <span class="card-title">${name}</span>
-          </div>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            ${(f.steps || []).map((step, i) => `
-              <span class="tag ${i === 0 ? 'tag-green' : 'tag-cyan'}">${step}</span>
-              ${i < (f.steps || []).length - 1 ? '<span style="color: var(--text-secondary);">→</span>' : ''}
-            `).join('')}
-          </div>
-        </div>
-      `).join('');
+      container.innerHTML = state.flows.map(([name, f]) => 
+        '<div class="card" style="margin-bottom: 1rem;"><div class="card-header"><span class="card-title">' + name + '</span></div><div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">' + (f.steps || []).map((step, i) => '<span class="tag ' + (i === 0 ? 'tag-success' : 'tag-primary') + '">' + step + '</span>' + (i < (f.steps || []).length - 1 ? '<span style="color: var(--text-secondary);">→</span>' : '')).join('') + '</div></div>'
+      ).join('');
     }
 
-    // Load dependencies
-    async function loadDependencies() {
-      try {
-        const deps = await api('/dependencies');
-        document.getElementById('dep-total').textContent = formatNumber(deps.total);
-        document.getElementById('dep-cycles').textContent = formatNumber(deps.cycles);
-      } catch (error) {
-        console.error('Failed to load dependencies:', error);
-      }
-    }
-
-    // Load complexity
-    async function loadComplexity() {
-      try {
-        const complexity = await api('/complexity');
-        document.getElementById('complexity-avg').textContent = complexity.average;
-        document.getElementById('complexity-max').textContent = complexity.max;
-        document.getElementById('complexity-high').textContent = complexity.highCount;
-
-        const tbody = document.getElementById('complexity-table');
-        tbody.innerHTML = (complexity.highFiles || []).map(f => `
-          <tr>
-            <td><code>${f.path}</code></td>
-            <td><span class="tag tag-orange">${f.complexity}</span></td>
-          </tr>
-        `).join('');
-      } catch (error) {
-        console.error('Failed to load complexity:', error);
-      }
-    }
-
-    // Generate genome
     async function generateGenome() {
       try {
         const data = await api('/genome');
         state.genome = data.genome;
         document.getElementById('genome-output').textContent = data.genome;
-        showToast(`Generated genome (${data.length} chars, ${data.compressionRatio}x compression)`);
-      } catch (error) {
-        console.error('Failed to generate genome:', error);
-      }
+        showToast('Generated genome (' + data.length + ' chars)');
+      } catch (error) {}
     }
 
-    // Copy genome
     function copyGenome() {
       if (!state.genome) {
         showToast('Generate genome first', 'error');
         return;
       }
       navigator.clipboard.writeText(state.genome);
-      showToast('Genome copied to clipboard');
+      showToast('Copied to clipboard');
     }
 
-    // Export project
     async function exportProject() {
       try {
         const format = document.getElementById('export-format').value;
         const level = parseInt(document.getElementById('export-level').value);
-
         const data = await api('/export', {
           method: 'POST',
           body: JSON.stringify({ format, level, compress: true })
         });
-
         const output = document.getElementById('export-output');
         output.style.display = 'block';
         output.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
         showToast('Export complete');
-      } catch (error) {
-        console.error('Failed to export:', error);
-      }
+      } catch (error) {}
     }
 
-    // Execute query
     async function executeQuery() {
       try {
         const query = document.getElementById('query-input').value;
@@ -993,58 +923,16 @@
           showToast('Enter a query', 'error');
           return;
         }
-
         const data = await api('/query', {
           method: 'POST',
           body: JSON.stringify({ query })
         });
-
-        document.getElementById('query-output').textContent = 
-          typeof data === 'string' ? data : JSON.stringify(data, null, 2);
-      } catch (error) {
-        console.error('Query failed:', error);
-      }
-    }
-
-    // Rescan project
-    async function rescanProject() {
-      try {
-        await api('/scan', { method: 'POST' });
-        showToast('Rescan complete');
-        refreshData();
-      } catch (error) {
-        console.error('Rescan failed:', error);
-      }
-    }
-
-    // Refresh all data
-    async function refreshData() {
-      await Promise.all([
-        loadStatus(),
-        loadFiles(),
-        loadPatterns(),
-        loadFlows(),
-        loadDependencies(),
-        loadComplexity()
-      ]);
-      showToast('Data refreshed');
+        document.getElementById('query-output').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {}
     }
 
     // Initialize
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        await refreshData();
-      } catch (error) {
-        console.error('Initialization failed:', error);
-      }
-
-      // Handle Enter key in query input
-      document.getElementById('query-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          executeQuery();
-        }
-      });
-    });
+    refreshData();
   </script>
 </body>
 </html>

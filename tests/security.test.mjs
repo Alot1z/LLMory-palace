@@ -291,10 +291,10 @@ async function runTests() {
   for (const { name, fn } of tests) {
     try {
       fn();
-      console.log(`✅ ${name}`);
+      console.log(`[PASS] ${name}`);
       passed++;
     } catch (e) {
-      console.log(`❌ ${name}`);
+      console.log(`[FAIL] ${name}`);
       console.log(`   Error: ${e.message}`);
       failed++;
     }
@@ -302,7 +302,7 @@ async function runTests() {
   
   console.log('');
   console.log('═'.repeat(60));
-  console.log(`📊 Results: ${passed} passed, ${failed} failed`);
+  console.log(`Results: ${passed} passed, ${failed} failed`);
   console.log('═'.repeat(60));
   
   if (failed > 0) {

@@ -27,7 +27,7 @@ import fs from 'fs';
 import path from 'path';
 import { createHash } from 'crypto';
 
-const VERSION = '2.6.0';
+const VERSION = '3.0.0';
 
 // ASCII Banner
 const BANNER = `

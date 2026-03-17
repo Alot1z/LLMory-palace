@@ -510,24 +510,24 @@ async function runTests() {
   for (const { name, fn } of tests) {
     try {
       fn();
-      console.log(`✅ ${name}`);
+      console.log(`[PASS] ${name}`);
       passed++;
     } catch (e) {
-      console.log(`❌ ${name}`);
+      console.log(`[FAIL] ${name}`);
       console.log(`   Error: ${e.message}`);
       failed++;
     }
   }
   
   console.log('\n' + '═'.repeat(60));
-  console.log(`📊 Results: ${passed} passed, ${failed} failed`);
+  console.log(` Results: ${passed} passed, ${failed} failed`);
   console.log('═'.repeat(60));
   
   if (failed > 0) {
-    console.log('\n❌ CLI VALIDATION TESTS FAILED');
+    console.log('\n[FAIL] CLI VALIDATION TESTS FAILED');
     process.exit(1);
   } else {
-    console.log('\n✅ All CLI validation tests passed');
+    console.log('\n[PASS] All CLI validation tests passed');
     process.exit(0);
   }
 }
