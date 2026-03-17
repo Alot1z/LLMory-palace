@@ -507,10 +507,10 @@ for (const { name, fn } of tests) {
   try {
     fn();
     passed++;
-    console.log(`  ✓ ${name}`);
+    console.log(`  [PASS] ${name}`);
   } catch (error) {
     failed++;
-    console.log(`  ✗ ${name}`);
+    console.log(`  [FAIL] ${name}`);
     console.log(`    Error: ${error.message}`);
   }
 }

@@ -1,8 +1,8 @@
 {
   "name": "llmemory-palace",
-  "version": "1.1.0",
+  "version": "3.0.0",
   "type": "module",
-  "description": "LLMemory-Palace: Code genome system for LLM context transfer. Maps codebases into portable format for LLM understanding. Now with parallel chain refresh support.",
+  "description": "LLMemory-Palace: Code genome system for LLM context transfer. Maps codebases into portable format for LLM understanding. Now with MCP server and reference-based minimal context (90%+ token savings).",
   "main": "lib/palace.js",
   "bin": {
     "palace": "./bin/cli.js",
@@ -14,6 +14,7 @@
       "import": "./lib/palace.js",
       "types": "./dist/index.d.ts"
     },
+    "./mcp-server": "./mcp-server/index.js",
     "./genome": "./lib/genome.js",
     "./genome-safe": "./lib/genome-safe.js",
     "./cli-validator": "./lib/cli-validator.js",
@@ -26,22 +27,26 @@
     "./state-reducer": "./lib/state-reducer.js",
     "./scanner-parallel": "./lib/scanner-parallel.js",
     "./scanner-optimized": "./lib/scanner-optimized.js",
-    "./large-file-handler": "./lib/large-file-handler.js"
+    "./large-file-handler": "./lib/streaming/large-file-handler.js"
   },
   "scripts": {
     "start": "node bin/cli.js",
+    "start:bun": "bun run bin/cli.js",
     "start:web": "node bin/palace-web.js",
     "web": "node bin/palace-web.js",
     "test": "node tests/palace.test.mjs",
+    "test:bun": "bun test tests/palace.test.mjs",
     "test:security": "node tests/security.test.mjs",
     "test:cli": "node tests/cli-validation.test.mjs",
     "test:integration": "node tests/integration/full-workflow.test.mjs",
     "test:streaming": "node tests/unit/streaming.test.mjs",
     "test:scanner-perf": "node tests/benchmark/scanner-perf.test.mjs",
     "test:all": "npm run test && npm run test:security && npm run test:cli && npm run test:integration && npm run test:streaming && npm run test:scanner-perf",
+    "test:all:bun": "bun test tests/",
     "lint": "eslint lib/**/*.js bin/**/*.js",
     "lint:fix": "eslint lib/**/*.js bin/**/*.js --fix",
     "build": "node scripts/build.js",
+    "build:bun": "bun run scripts/build.js",
     "build:types": "tsc lib/*.js --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "genome": "node bin/cli.js genome",
     "export": "node bin/cli.js export",
@@ -50,6 +55,9 @@
     "status": "node bin/cli.js status",
     "validate": "node bin/cli.js validate",
     "clean": "rm -rf dist/ .palace/ reconstructed/",
+    "mcp": "node mcp-server/index.js",
+    "mcp:bun": "bun run mcp-server/index.js",
+    "postinstall": "node scripts/runtime-detect.js postinstall",
     "prepublishOnly": "npm run build && npm run test && npm run test:security",
     "security:audit": "npm audit && npm run test:security"
   },
@@ -82,19 +90,22 @@
   },
   "homepage": "https://github.com/Alot1z/LLMemory-palace#readme",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
   },
   "files": [
     "bin/",
     "lib/",
-    "web/",
     "dist/",
     "config/",
+    "scripts/",
+    "mcp-server/",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
   ],
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
     "chalk": "^5.3.0",
     "commander": "^12.0.0",
     "cors": "^2.8.6",
@@ -112,7 +123,7 @@
     "typescript": "^5.3.0"
   },
   "palace": {
-    "version": "v2.6.0",
+    "version": "v3.0.0",
     "security": {
       "eval": false,
       "inputValidation": true,

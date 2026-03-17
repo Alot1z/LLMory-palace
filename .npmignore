@@ -1,0 +1,54 @@
+# Test files
+tests/
+*.test.js
+*.test.mjs
+*.spec.js
+coverage/
+
+# Development files
+.bg-shell/
+.pi/
+_bmad/
+misc/
+test/
+llm-export/
+design-artifacts/
+wiki/
+inspiration/
+skills/
+
+# Claude Code
+.claude/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+.bg-shell/
+.pi/
+misc/
+*.log
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.tsbuildinfo
+.nyc_output/
+
+# Internal documentation
+PHASE*.md
+IMPLEMENTATION-STATUS.md
+ROADMAP.md
+wiki/
+
+# Reconstructed output
+reconstructed/
+
+# Palace runtime
+.palace/
+
+# MCP server (separate package)
+mcp-server/

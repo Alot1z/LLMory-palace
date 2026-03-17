@@ -202,22 +202,22 @@ function formatMs(ms) {
  */
 async function runBenchmark() {
   console.log('\n' + '═'.repeat(70));
-  console.log('🚀 ScannerParallel Performance Benchmark');
+  console.log('ScannerParallel Performance Benchmark');
   console.log('═'.repeat(70) + '\n');
 
   // Create temporary directory
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'scanner-bench-'));
-  console.log(`📁 Creating ${FILE_COUNT} test files...`);
+  console.log(`[SETUP] Creating ${FILE_COUNT} test files...`);
   
   const totalFiles = generateTestFiles(tempDir, FILE_COUNT);
-  console.log(`✅ Created ${totalFiles} files in ${tempDir}\n`);
+  console.log(`[OK] Created ${totalFiles} files in ${tempDir}\n`);
 
   // Collect files for scanning
   const files = collectFiles(tempDir);
-  console.log(`📂 Collected ${files.length} files for scanning\n`);
+  console.log(`[SCAN] Collected ${files.length} files for scanning\n`);
 
   // Warmup runs
-  console.log('🔥 Warmup runs...');
+  console.log('[WARMUP] Running warmup...');
   for (let i = 0; i < WARMUP_RUNS; i++) {
     const scanner = new ScannerParallel({ useWorkers: false });
     await scanner.scanFiles(files, tempDir);
@@ -225,10 +225,10 @@ async function runBenchmark() {
     const scannerParallel = new ScannerParallel({ useWorkers: true });
     await scannerParallel.scanFiles(files, tempDir);
   }
-  console.log('✅ Warmup complete\n');
+  console.log('[OK] Warmup complete\n');
 
   // Benchmark sequential scanning
-  console.log('📊 Benchmarking SEQUENTIAL scanning...');
+  console.log('[BENCH] Benchmarking SEQUENTIAL scanning...');
   const sequentialTimes = [];
   
   for (let i = 0; i < BENCHMARK_RUNS; i++) {
@@ -250,7 +250,7 @@ async function runBenchmark() {
   console.log(`   - Max:     ${formatMs(seqStats.max)}\n`);
 
   // Benchmark parallel scanning
-  console.log('📊 Benchmarking PARALLEL scanning...');
+  console.log('[BENCH] Benchmarking PARALLEL scanning...');
   const parallelTimes = [];
   
   for (let i = 0; i < BENCHMARK_RUNS; i++) {
@@ -277,7 +277,7 @@ async function runBenchmark() {
   const speedupMin = seqStats.min / parStats.min;
 
   console.log('═'.repeat(70));
-  console.log('📈 BENCHMARK RESULTS');
+  console.log('[RESULTS] BENCHMARK RESULTS');
   console.log('═'.repeat(70));
   console.log(`\n   Files scanned:    ${files.length}`);
   console.log(`   Benchmark runs:   ${BENCHMARK_RUNS}`);
@@ -289,23 +289,23 @@ async function runBenchmark() {
   console.log('   └─────────────────────────────────────────────────────┘\n');
 
   if (speedupAvg < 1) {
-    console.log('   ⚠️  Parallel scanning is SLOWER than sequential.');
+    console.log('   [WARN] Parallel scanning is SLOWER than sequential.');
     console.log('      This may be due to worker thread overhead on small files.\n');
   } else if (speedupAvg < 1.5) {
-    console.log('   ℹ️  Parallel scanning shows modest improvement.\n');
+    console.log('   [INFO] Parallel scanning shows modest improvement.\n');
   } else if (speedupAvg < 3) {
-    console.log('   ✅ Parallel scanning shows good improvement.\n');
+    console.log('   [OK] Parallel scanning shows good improvement.\n');
   } else {
-    console.log('   🚀 Parallel scanning shows EXCELLENT improvement!\n');
+    console.log('   [EXCELLENT] Parallel scanning shows EXCELLENT improvement!\n');
   }
 
   // Cleanup
   fs.rmSync(tempDir, { recursive: true, force: true });
-  console.log('🧹 Cleaned up test directory\n');
+  console.log('[CLEANUP] Cleaned up test directory\n');
 
   // Summary for CI
   console.log('═'.repeat(70));
-  console.log('📊 CI Summary (JSON)');
+  console.log('[CI] Summary (JSON)');
   console.log('═'.repeat(70));
   console.log(JSON.stringify({
     files: files.length,
@@ -331,7 +331,7 @@ async function runBenchmark() {
   }, null, 2));
 
   console.log('\n═'.repeat(70));
-  console.log('✅ Benchmark complete');
+  console.log('[DONE] Benchmark complete');
   console.log('═'.repeat(70) + '\n');
 }
 

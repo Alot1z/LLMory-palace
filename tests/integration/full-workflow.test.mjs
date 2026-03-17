@@ -120,13 +120,13 @@ async function setup() {
     main: 'src/index.js'
   }, null, 2));
   
-  console.log('📁 Test project created at:', tempDir);
+  console.log('[SETUP] Test project created at:', tempDir);
 }
 
 async function teardown() {
   if (tempDir && fs.existsSync(tempDir)) {
     fs.rmSync(tempDir, { recursive: true, force: true });
-    console.log('🧹 Test directory cleaned up');
+    console.log('[CLEANUP] Test directory cleaned up');
   }
 }
 
@@ -135,7 +135,7 @@ async function teardown() {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('🏗️  SECTION 1: PALACE INITIALIZATION');
+console.log('[SECTION 1] PALACE INITIALIZATION');
 console.log('═'.repeat(60) + '\n');
 
 test('should initialize palace in a directory', async () => {
@@ -158,7 +158,7 @@ test('should not crash on re-initialization', async () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('🔍 SECTION 2: SCANNING');
+console.log('[SECTION 2] SCANNING');
 console.log('═'.repeat(60) + '\n');
 
 test('should scan project files', async () => {
@@ -187,7 +187,7 @@ test('should count patterns and flows', async () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('📚 SECTION 3: PATTERN LIBRARY');
+console.log('[SECTION 3] PATTERN LIBRARY');
 console.log('═'.repeat(60) + '\n');
 
 test('should initialize pattern library', () => {
@@ -211,7 +211,7 @@ test('should extract patterns from code', () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('⚡ SECTION 4: BEHAVIOR GRAPHS');
+console.log('[SECTION 4] BEHAVIOR GRAPHS');
 console.log('═'.repeat(60) + '\n');
 
 test('should initialize behavior graph', () => {
@@ -231,7 +231,7 @@ test('should get flow by name', () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('🔐 SECTION 5: SEMANTIC HASHING');
+console.log('[SECTION 5] SEMANTIC HASHING');
 console.log('═'.repeat(60) + '\n');
 
 test('should generate consistent hashes', () => {
@@ -253,7 +253,7 @@ test('should generate different hashes for different names', () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('🧬 SECTION 6: GENOME ENCODER');
+console.log('[SECTION 6] GENOME ENCODER');
 console.log('═'.repeat(60) + '\n');
 
 test('should encode project to genome', async () => {
@@ -278,7 +278,7 @@ test('should get genome stats', async () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('🔒 SECTION 7: SAFE GENOME PARSING');
+console.log('[SECTION 7] SAFE GENOME PARSING');
 console.log('═'.repeat(60) + '\n');
 
 test('should safely parse valid genome', () => {
@@ -321,7 +321,7 @@ test('should execute genome safely', () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('📦 SECTION 8: PACK AND MERGE');
+console.log('[SECTION 8] PACK AND MERGE');
 console.log('═'.repeat(60) + '\n');
 
 test('should create pack from project', async () => {
@@ -346,7 +346,7 @@ test('should merge pack to output directory', async () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('🗜️  SECTION 9: COMPRESSION');
+console.log('[SECTION 9] COMPRESSION');
 console.log('═'.repeat(60) + '\n');
 
 test('should compress project', async () => {
@@ -362,7 +362,7 @@ test('should compress project', async () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('✅ SECTION 10: VALIDATION INTEGRATION');
+console.log('[PASS] SECTION 10: VALIDATION INTEGRATION');
 console.log('═'.repeat(60) + '\n');
 
 test('should validate paths throughout workflow', () => {
@@ -387,7 +387,7 @@ test('should sanitize strings for output', () => {
 // ============================================
 
 console.log('\n' + '═'.repeat(60));
-console.log('📊 SECTION 11: STATUS AND QUERY');
+console.log('[SECTION 11] STATUS AND QUERY');
 console.log('═'.repeat(60) + '\n');
 
 test('should get project status', async () => {
@@ -409,7 +409,7 @@ test('should handle queries', async () => {
 
 async function runTests() {
   console.log('\n' + '═'.repeat(60));
-  console.log('🧪 LLMemory-Palace Integration Test Suite v2.6.0');
+  console.log('LLMemory-Palace Integration Test Suite v2.6.0');
   console.log('═'.repeat(60) + '\n');
   
   await setup();
@@ -417,10 +417,10 @@ async function runTests() {
   for (const { name, fn } of tests) {
     try {
       await fn();
-      console.log(`✅ ${name}`);
+      console.log(`[PASS] ${name}`);
       passed++;
     } catch (e) {
-      console.log(`❌ ${name}`);
+      console.log(`[FAIL] ${name}`);
       console.log(`   Error: ${e.message}`);
       failed++;
     }
@@ -429,14 +429,14 @@ async function runTests() {
   await teardown();
   
   console.log('\n' + '═'.repeat(60));
-  console.log(`📊 Results: ${passed} passed, ${failed} failed`);
+  console.log(` Results: ${passed} passed, ${failed} failed`);
   console.log('═'.repeat(60));
   
   if (failed > 0) {
-    console.log('\n❌ INTEGRATION TESTS FAILED');
+    console.log('\n[FAIL] INTEGRATION TESTS FAILED');
     process.exit(1);
   } else {
-    console.log('\n✅ All integration tests passed');
+    console.log('\n[PASS] All integration tests passed');
     process.exit(0);
   }
 }

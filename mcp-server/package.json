@@ -1,0 +1,46 @@
+{
+  "name": "@alot1z/llmemory-palace-mcp",
+  "version": "1.2.0",
+  "type": "module",
+  "description": "MCP server for LLMemory-Palace - Reference-based minimal context for 90%+ token savings",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "palace-mcp": "./index.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "start": "node index.js",
+    "start:bun": "bun run index.js",
+    "build": "tsc --declaration --emitDeclarationOnly --outDir dist",
+    "test": "node --test",
+    "test:bun": "bun test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "peerDependencies": {
+    "llmemory-palace": "^1.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "palace",
+    "llm",
+    "context",
+    "reference-based",
+    "token-optimization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alot1z/LLMemory-palace"
+  },
+  "license": "MIT"
+}

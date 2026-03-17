@@ -1,0 +1,76 @@
+# Dependencies
+node_modules/
+bun.lockb
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+*.tsbuildinfo
+*.js.map
+*.d.ts.map
+
+# Palace runtime
+.palace/
+reconstructed/
+.palace-references/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test artifacts
+coverage/
+.nyc_output/
+
+# Temporary files
+.bg-shell/
+.pi/
+_bmad/
+misc/
+test/
+llm-export/
+package.palace.json
+test.genome
+
+# Claude Code
+.claude/
+
+# BMAD (planning artifacts)
+_bmad/
+_bmad-output/
+
+# MCP server build
+mcp-server/dist/
+mcp-server/node_modules/
+
+# Generated documentation
+docs/API.md.bak
+*.backup
+
+# Phase tracking (internal)
+PHASE*.md
+IMPLEMENTATION-STATUS.md
+ROADMAP.md
+
+# Design artifacts (internal)
+design-artifacts/
+
+# Wiki (internal)
+wiki/
+
+# Skills (internal development)
+skills/
+
+# Inspiration files
+inspiration/

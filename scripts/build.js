@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * @fileoverview Build script for LLMemory-Palace v2.6.0
- * @description Compiles, bundles, and prepares distribution
+ * Build script for LLMemory-Palace v3.0.0
+ * Compiles, bundles, and prepares distribution
  */
 
 import fs from 'fs';
@@ -13,15 +13,15 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 console.log('═'.repeat(60));
-console.log('🏗️  LLMemory-Palace Build v2.6.0');
+console.log('  LLMemory-Palace Build v3.0.0');
 console.log('═'.repeat(60) + '\n');
 
 async function build() {
   const startTime = Date.now();
-  
+
   try {
     // Step 1: Clean
-    console.log('🧹 Cleaning dist directory...');
+    console.log('[1/8] Cleaning dist directory...');
     const distDir = path.join(rootDir, 'dist');
     if (fs.existsSync(distDir)) {
       fs.rmSync(distDir, { recursive: true });
@@ -29,82 +29,84 @@ async function build() {
     fs.mkdirSync(distDir, { recursive: true });
     fs.mkdirSync(path.join(distDir, 'lib'), { recursive: true });
     fs.mkdirSync(path.join(distDir, 'bin'), { recursive: true });
-    console.log('   ✓ Dist directory cleaned\n');
-    
-    // Step 2: Copy lib files (including subdirectories)
-    console.log('📦 Copying library files...');
+    console.log('      Done\n');
+
+    // Step 2: Copy lib files
+    console.log('[2/8] Copying library files...');
     const libDir = path.join(rootDir, 'lib');
-    
+
     function copyDir(srcDir, destDir) {
       if (!fs.existsSync(destDir)) {
         fs.mkdirSync(destDir, { recursive: true });
       }
-      
+
       const entries = fs.readdirSync(srcDir, { withFileTypes: true });
-      
+
       for (const entry of entries) {
         const srcPath = path.join(srcDir, entry.name);
         const destPath = path.join(destDir, entry.name);
-        
+
         if (entry.isDirectory()) {
           copyDir(srcPath, destPath);
-          console.log(`   ✓ ${path.relative(libDir, srcPath)}/`);
         } else if (entry.name.endsWith('.js') || entry.name.endsWith('.mjs')) {
           fs.copyFileSync(srcPath, destPath);
-          console.log(`   ✓ ${path.relative(libDir, srcPath)}`);
         }
       }
     }
-    
+
     copyDir(libDir, path.join(distDir, 'lib'));
-    
+    console.log('      Done\n');
+
     // Step 3: Copy bin files
-    console.log('\n📦 Copying bin files...');
+    console.log('[3/8] Copying bin files...');
     const binDir = path.join(rootDir, 'bin');
-    const binFiles = fs.readdirSync(binDir).filter(f => f.endsWith('.js'));
-    
-    for (const file of binFiles) {
-      const src = path.join(binDir, file);
-      const dest = path.join(distDir, 'bin', file);
-      fs.copyFileSync(src, dest);
-      // Make executable
-      fs.chmodSync(dest, 0o755);
-      console.log(`   ✓ ${file}`);
+    if (fs.existsSync(binDir)) {
+      const binFiles = fs.readdirSync(binDir).filter(f => f.endsWith('.js'));
+      const destBinDir = path.join(distDir, 'bin');
+      fs.mkdirSync(destBinDir, { recursive: true });
+
+      for (const file of binFiles) {
+        const src = path.join(binDir, file);
+        const dest = path.join(destBinDir, file);
+        fs.copyFileSync(src, dest);
+        fs.chmodSync(dest, 0o755);
+      }
     }
-    
+    console.log('      Done\n');
+
     // Step 4: Copy config files
-    console.log('\n📦 Copying config files...');
+    console.log('[4/8] Copying config files...');
     const configDir = path.join(rootDir, 'config');
     if (fs.existsSync(configDir)) {
       const destConfigDir = path.join(distDir, 'config');
       fs.mkdirSync(destConfigDir, { recursive: true });
       const configFiles = fs.readdirSync(configDir);
-      
+
       for (const file of configFiles) {
         const src = path.join(configDir, file);
         const dest = path.join(destConfigDir, file);
         fs.copyFileSync(src, dest);
-        console.log(`   ✓ config/${file}`);
       }
     }
-    
+    console.log('      Done\n');
+
     // Step 5: Copy documentation
-    console.log('\n📦 Copying documentation...');
+    console.log('[5/8] Copying documentation...');
     const docsToCopy = ['README.md', 'LICENSE', 'CHANGELOG.md'];
-    
+
     for (const doc of docsToCopy) {
       const src = path.join(rootDir, doc);
       const dest = path.join(distDir, doc);
       if (fs.existsSync(src)) {
         fs.copyFileSync(src, dest);
-        console.log(`   ✓ ${doc}`);
       }
     }
-    
+    console.log('      Done\n');
+
     // Step 6: Generate package.json for dist
-    console.log('\n📦 Generating dist package.json...');
+    console.log('[6/8] Generating dist package.json...');
     const packageJson = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json')));
-    
+
     const distPackage = {
       name: packageJson.name,
       version: packageJson.version,
@@ -129,15 +131,15 @@ async function build() {
       engines: packageJson.engines,
       dependencies: packageJson.dependencies
     };
-    
+
     fs.writeFileSync(
       path.join(distDir, 'package.json'),
       JSON.stringify(distPackage, null, 2)
     );
-    console.log('   ✓ package.json');
-    
+    console.log('      Done\n');
+
     // Step 7: Generate index.d.ts
-    console.log('\n📦 Generating TypeScript definitions...');
+    console.log('[7/8] Generating TypeScript definitions...');
     const dtsContent = `/**
  * LLMemory-Palace v${packageJson.version}
  * TypeScript Definitions
@@ -250,23 +252,23 @@ declare module 'llmemory-palace' {
 export default Palace;
 `;
     fs.writeFileSync(path.join(distDir, 'index.d.ts'), dtsContent);
-    console.log('   ✓ index.d.ts');
-    
+    console.log('      Done\n');
+
     // Step 8: Build summary
     const duration = Date.now() - startTime;
-    console.log('\n' + '═'.repeat(60));
-    console.log('✅ Build Complete');
+    console.log('[8/8] Build complete\n');
     console.log('═'.repeat(60));
-    console.log(`   📦 Version: ${packageJson.version}`);
-    console.log(`   📁 Output: ${distDir}`);
-    console.log(`   ⏱️  Duration: ${duration}ms`);
-    console.log('   🔒 Security: Enhanced');
+    console.log('  BUILD SUMMARY');
+    console.log('═'.repeat(60));
+    console.log(`  Version:  ${packageJson.version}`);
+    console.log(`  Output:   ${distDir}`);
+    console.log(`  Duration: ${duration}ms`);
     console.log('═'.repeat(60) + '\n');
-    
+
     return { success: true, duration, outputDir: distDir };
-    
+
   } catch (error) {
-    console.error('\n❌ Build failed:', error.message);
+    console.error('\n[ERROR] Build failed:', error.message);
     throw error;
   }
 }

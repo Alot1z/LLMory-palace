@@ -4,6 +4,45 @@ Format: `[vMAJOR.MINOR.PATCH] - YYYY-MM-DD`
 
 ---
 
+## [v1.2.0] - 2025-03-17
+
+### MCP Server
+- **Reference-based minimal context** - 90%+ token savings via semantic references
+- **5 core tools** - init, scan, genome, resolve_ref, status
+- **Depth-based resolution** - depth=1: summary, depth=2: outline, depth=3: full
+- **Bun runtime support** - First-class Bun 1.0+ compatibility
+
+### AUTO-MODE
+- **Intent detection layer** - Automatically detects user intent (fix/add/refactor/understand)
+- **Confidence scoring** - Auto-execute at 0.9+, confirm at 0.7+, clarify below
+- **Plan-review-apply pattern** - Safe execution with user approval gates
+- **Risk assessment** - Low/medium/high risk tagging for all actions
+
+### Zero-Token Reference System
+- **palace:// URIs** - Semantic references for scans, genomes, symbols, patterns
+- **Lazy loading** - Content fetched on demand at specified depth
+- **Staleness detection** - Auto-invalidation when files change
+- **LRU cache** - Efficient palace instance caching
+
+### Token Savings
+| Operation | Full Content | Reference Mode | Savings |
+|-----------|-------------|----------------|---------|
+| scan | 5000 tokens | 150 tokens | 97% |
+| genome | 20000 tokens | 200 tokens | 99% |
+| symbol query | 3000 tokens | 80 tokens | 97% |
+
+### Scripts
+- `npm run mcp` / `bun run mcp` - Start MCP server
+- `npm run test:bun` - Run tests with Bun
+- `npm run test:all:bun` - Full test suite with Bun
+
+### Export Paths
+```
+./mcp-server      -> mcp-server/index.js
+```
+
+---
+
 ## [v1.1.0] - 2025-03-17
 
 ### AI Integration
