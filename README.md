@@ -6,7 +6,7 @@
 [![Bun](https://img.shields.io/badge/Bun-1.0+-black?logo=bun)](https://bun.sh/)
 [![Node](https://img.shields.io/badge/Node-18+-green?logo=node.js)](https://nodejs.org/)
 
-**[📦 npm](https://www.npmjs.com/package/llmemory-palace)** | **[💻 GitHub](https://github.com/Alot1z/LLMemory-palace)** | **[🐛 Issues](https://github.com/Alot1z/LLMemory-palace/issues)**
+**[📦 npm](https://www.npmjs.com/package/llmemory-palace)** | **[💻 GitHub](https://github.com/Alot1z/LLMemory-palace)** | **[📖 Docs](#documentation)** | **[🗺️ Roadmap](./ROADMAP.md)** | **[🐛 Issues](https://github.com/Alot1z/LLMemory-palace/issues)**
 
 ---
 
